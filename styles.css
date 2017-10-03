@@ -115,3 +115,20 @@ h1{
 button {
 	
 }
+
+
+
+#pic1 {
+	width: 50px;
+	display: inline-block;
+	
+}
+
+#pic2 {
+	width: 50px;
+	display: inline-block;
+	
+}
+img {
+	width: 80%;
+}

@@ -1,8 +1,7 @@
 // GLOBALS
 // init whosTurn as player 1s turn
 
-
-
+var numPlayers = 1
 var whosTurn = 1;
 var player1Squares = [];
 var player2Squares = [];
@@ -29,7 +28,7 @@ var markSquare = function(squareClicked){
 	if(squareClicked.innerHTML !== '-'){
 		document.getElementById('message').innerHTML = "Sorry, that square is taken."
 	}else if(whosTurn === 1){
-		squareClicked.innerHTML = 'X';
+		squareClicked.innerHTML = "X";
 		whosTurn = 2;
 		player1Squares.push(squareClicked.id);
 		console.log(player1Squares)
@@ -37,12 +36,17 @@ var markSquare = function(squareClicked){
 		if(player1Squares.length >= 3){
 			checkWin(player1Squares,1);
 		}
+		if((numPlayers == 1) && (!gameOver)){
+			computerMove();
+		}
 	}else{
-		squareClicked.innerHTML = 'O';
+		squareClicked.innerHTML = "O";
 		whosTurn = 1;
 		player2Squares.push(squareClicked.id);
 		document.getElementById('message').innerHTML = "It's X's turn"
-		checkWin(player2Squares,2);
+		if(player2Squares.length >= 3){
+			checkWin(player2Squares,2);
+		}		
 	}
 	// checkWin();
 }
@@ -55,11 +59,16 @@ function computerMove(){
 	var sqaureFound = false;
 	while(!sqaureFound){
 		rand = Math.floor(Math.random() * 9);
-		console.log(takenSquares)
-		if(takenSquares.indexOf(squares[rand].id) == -1){
-			// square not taken. Take it.
+		var isTaken = squares[rand].innerHTML;
+		if(isTaken === '-'){
 			sqaureFound = true;
 		}
+
+		// console.log(takenSquares)
+		// if(takenSquares.indexOf(squares[rand].id) == -1){
+		// 	// square not taken. Take it.
+		// 	sqaureFound = true;
+		// }
 	}
 	markSquare(squares[rand]);
 }
@@ -129,6 +138,7 @@ function myFunction() {
     gameOver = false;
     player1Squares = [];
     player2Squares = [];
+
     document.getElementById("A1").classList.remove("winning-square")
     document.getElementById("B1").classList.remove("winning-square")
     document.getElementById("C1").classList.remove("winning-square")
@@ -190,4 +200,21 @@ for (let i = 0; i < squares.length; i++){
 // 			markSquare(this);
 // 		}
 // 	}
+document.getElementById('one-player').addEventListener('click', function(event){
+	// console.log("User has chosen a one player game")
+	gameOver = false;
+	numPlayers = 1;
+	
+	
+	
+});
 
+document.getElementById('two-player').addEventListener('click', function(event){
+	// console.log("User has chosen a two player game");
+	gameOver = false;
+	numPlayers = 2;
+	var nameBox = document.getElementById('player-name');
+	if(nameBox.value !== ""){
+		name = nameBox.value
+	}	
+});
