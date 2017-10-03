@@ -41,6 +41,7 @@ var markSquare = function(squareClicked){
 		}
 	}else{
 		squareClicked.innerHTML = "O";
+		squareClicked.style.color = "red"
 		whosTurn = 1;
 		player2Squares.push(squareClicked.id);
 		document.getElementById('message').innerHTML = "It's X's turn"
@@ -149,6 +150,16 @@ function myFunction() {
     document.getElementById("B3").classList.remove("winning-square")
     document.getElementById("C3").classList.remove("winning-square")
     ;
+    document.getElementById("A1").style.color = "black";
+    document.getElementById("A2").style.color = "black";
+    document.getElementById("A3").style.color = "black";
+    document.getElementById("B1").style.color = "black";
+    document.getElementById("B2").style.color = "black";
+    document.getElementById("B3").style.color = "black";
+    document.getElementById("C1").style.color = "black";
+    document.getElementById("C2").style.color = "black";
+    document.getElementById("C3").style.color = "black";
+    
 
 
 
